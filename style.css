@@ -1,0 +1,77 @@
+body {
+    background-image: url("https://art.pixilart.com/sr2b72723d89eaws3.png");
+    background-size: 89%;
+    background-repeat: no-repeat;
+    background-color: #22b14c;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+}
+#clickButton {
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-color: seagreen;
+    color: white;
+    background: #402F1D;
+    cursor: pointer;
+    border-width: 10px;
+    border-style: none;
+}
+#score {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+#shop {
+    align-content: flex-end;
+    padding: 30px 30px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+.card {
+    position: fixed;
+    width:300px;
+    min-height: 1000px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    right:-20px;
+    top: -20px;
+    margin: 16px;
+    border-radius: 4px;
+    background-color: #402F1D;
+}
+
+#ss1b {
+    position: fixed;
+    border-radius: 8px;
+    width: 250px;
+    max-height: 75px;
+    right: 20px;
+    border-width: medium;
+    background: burlywood;
+}
+
+#ss2b {
+    position: fixed;
+    border-radius: 8px;
+    width: 250px;
+    max-height: 100px;
+    top: 150px;
+    right: 20px;
+    border-width: medium;
+    background: burlywood;
+}
+
+#Increase {
+    border-radius: 8px;
+    border-color: darkgreen;
+    background: #402F1D;
+    color: white;
+}
+
+#buyItem {
+    border-radius: 8px;
+    border-color: darkgreen;
+    background: #402F1D;
+    color: white;
+}

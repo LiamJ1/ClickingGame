@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<h1>Tree Plant Simulator</h1>
+
+<button id="clickButton" onclick="incrementScore()">Plant Trees!</button>
+<p id="score">Trees Planted: 0</p>
+
+<div class="shop">
+    <h1>Seed Shop</h1>
+    <div class="row">
+        <button id="buyItem" onclick="buyItem('item1')">Buy Seed 1 (Cost: <span id="buyOption"></span>)</button>
+        <button id="Increase" onclick="increaseMaxItemCount()">+ 1 Item = 2500 Seeds</button>
+    </div>
+</div>
+
+<div class="card">
+    <div class="Score Shop">
+        <h3>Shop</h3>
+        <div class="ss1">
+            <button id="ss1b" onclick="extraHand()">Extra Hand: 10 Score Per 3 Seconds (Cost: <span id="extraHandCost">1500</span>) <p id="extraHandCount">Number:</p> </button>
+            <button id="ss2b" onclick="extraPerson()"> Extra Person: 100 Per Second <br> (Cost: <span id="extraPersonCost">15000</span>) <p id="extraPersonCount">Number:</p></button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let score = 0;
+    let item1Count = 1;
+    let buyOptions = [2];
+    let index = 0;
+    let multiplier = 1;
+    let extraHandCount = 0;
+    let extraHandCost = 1500;
+    let extraPersonCount = 0;
+    let extraPersonCost = 15000;
+    let maxItem1Count = 5;
+    let maxItemCountUpgradeCost = 2500;
+    let clicksin5 = 1;
+
+    let extraHandInterval;
+    let extraPersonInterval;
+    let cpsInterval;
+    
+
+    function updateBuyOption() {
+        document.getElementById('buyOption').textContent = `${buyOptions[index]} - Items: ${item1Count}/${maxItem1Count}`; // Show the current count and the maximum count
+    }
+
+    function incrementScore() {
+        score += multiplier;
+        updateScore();
+    }
+
+    function updateScore() {
+        document.getElementById('score').textContent = `Score: ${score}`;
+        document.getElementById('extraHandCount').textContent = `: ${extraHandCount}`;
+        document.getElementById('extraPersonCount').textContent = `: ${extraPersonCount}`;
+    }
+
+    function buyItem(item) {
+        let cost = buyOptions[index];
+        if (score >= cost && item1Count < maxItem1Count) { // Check if item1Count is less than the maximum count
+            score -= cost;
+            item1Count++;
+            multiplier = item1Count;
+            updateScore();
+            updateBuyOption();
+        }
+    }
+
+    function extraHand() {
+        if (score >= extraHandCost) {
+            score -= extraHandCost;
+            extraHandCount++;
+            extraHandCost *= 2; // Increase cost for the next purchase\
+            updateScore();
+            startExtraHandInterval();
+            document.getElementById('extraHandCost').textContent = extraHandCost;
+        }
+    }
+
+    function startExtraHandInterval() {
+        clearInterval(extraHandInterval);
+        extraHandInterval = setInterval(function() {
+            score += 10 * extraHandCount;
+            updateScore();
+        }, 3000);
+    }
+
+    function increaseMaxItemCount() {
+        if (score >= maxItemCountUpgradeCost) {
+            score -= maxItemCountUpgradeCost;
+            maxItem1Count++;
+            maxItemCountUpgradeCost *= 2; // Increase cost for the next upgrade
+            updateScore();
+            updateBuyOption();
+        }
+    }
+
+    function extraPerson() {
+        if (score >= extraPersonCost) {
+            score -= extraPersonCost;
+            extraPersonCount++;
+            extraPersonCost *= 2; // Increase cost for the next purchase
+            updateScore();
+            startExtraPersonInterval();
+            document.getElementById('extraPersonCost').textContent = extraPersonCost;
+        }
+    }
+
+    function startExtraPersonInterval() {
+        clearInterval(extraPersonInterval); // Clear existing interval
+        extraPersonInterval = setInterval(function() {
+            score += 100 * extraPersonCount; // Increment score by 100 per second per upgrade
+            updateScore();
+        }, 1000);
+    }
+    function cpsMessages() {
+        clearInterval(cpsInterval);
+        cpsInterval = setInterval(function () {
+
+        })
+    }
+
+</script>
+
+</body>
+</html>
